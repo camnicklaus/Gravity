@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BodyContentWrapStyle } from './BodyContentWrapStyle';
 
-export const OptionsMain = () => (
+export const PrivateStorageView = () => (
     <BodyContentWrapStyle>
-        Options and shit
+        private storage and shit
     </BodyContentWrapStyle>
 )

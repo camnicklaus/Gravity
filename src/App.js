@@ -5,22 +5,22 @@ import { Transition, TransitionGroup } from 'react-transition-group';
 import Media from "react-media";
 import Img from 'react-image';
 
-import { OptionsMain, AboutMain, TechnologyMain, BodyContentSelector } from 'Components/Body';
+import {  BodyContentSelector } from 'Components/Body';
 import { MainContentLayout } from 'Components/Layout/MainContentLayout';
 import { HeaderContentLayout, HeaderContentWrap } from 'Components/Header';
 import { DESKTOP, TABLET } from 'styleConst';
 
-const HeaderContentLeft = styled.div`
-  flex: 1;
+const HeaderContentTop = styled.div`
+  /* flex: 1; */
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  /* align-items: center; */
 `;
-const HeaderContentRight = styled.div`
+const HeaderContentBottom = styled.div`
   position: relative;
-  flex: 1;
+  /* flex: 1; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 const NavDesktop = styled.ul`
   height: 100%;
@@ -72,7 +72,9 @@ const NavLi = styled.li`
 `;
 const NLink = styled(NavLink)`
     text-decoration: none;
-    color: ${props => props.isNav ? 'black' : 'white'};
+    font-size: small;
+    white-space: nowrap;
+    color: ${props => props.isnav ? 'black' : 'white'};
     &.active {
         color: blueviolet;
     }
@@ -94,29 +96,35 @@ class App extends Component {
       <MainContentLayout>
         <HeaderContentLayout>
           <HeaderContentWrap>
-            <HeaderContentLeft>
+            <HeaderContentTop>
               <h2>GRAVITY</h2>
-            </HeaderContentLeft>
-            <HeaderContentRight>
+            </HeaderContentTop>
+            <HeaderContentBottom>
             <Media query={`(max-width: ${TABLET}px)`}>
               {matches =>
                 matches ? (
                   <NavMobile>
-                    <NavLi><NLink isNav={matches} to='/about'>about</NLink></NavLi>
-                    <NavLi><NLink isNav={matches} to='/options'>options</NLink></NavLi>
-                    <NavLi><NLink isNav={matches} to='/technology'>how it works</NLink></NavLi>
+                    <NavLi><NLink isnav={matches} to='/protect'>Gravity Protect</NLink></NavLi>
+                    <NavLi><NLink isnav={matches} to='/value-data'>Gravity Value Data</NLink></NavLi>
+                    <NavLi><NLink isnav={matches} to='/connect'>Gravity Connect</NLink></NavLi>
+                    <NavLi><NLink isnav={matches} to='/cloud-exchange'>Gravity Cloud Exchange</NLink></NavLi>
+                    <NavLi><NLink isnav={matches} to='/private-storage'>Gravity Private Storage</NLink></NavLi>
+                    <NavLi><NLink isnav={matches} to='/survive'>O365 Survive</NLink></NavLi>
                   </NavMobile>
                 ) : (
                   <NavDesktop>
-                    <NavLi><NLink to='/about'>about</NLink></NavLi>
-                    <NavLi><NLink to='/options'>options</NLink></NavLi>
-                    <NavLi><NLink to='/technology'>how it works</NLink></NavLi>
+                    <NavLi><NLink to='/protect'>Gravity Protect</NLink></NavLi>
+                    <NavLi><NLink to='/value-data'>Gravity Value Data</NLink></NavLi>
+                    <NavLi><NLink to='/connect'>Gravity Connect</NLink></NavLi>
+                    <NavLi><NLink to='/cloud-exchange'>Gravity Cloud Exchange</NLink></NavLi>
+                    <NavLi><NLink to='/private-storage'>Gravity Private Storage</NLink></NavLi>
+                    <NavLi><NLink to='/survive'>O365 Survive</NLink></NavLi>
                   </NavDesktop>
                 )
               }
             </Media>
               
-            </HeaderContentRight>
+            </HeaderContentBottom>
           </HeaderContentWrap>
         </HeaderContentLayout>
         <Main>
@@ -162,7 +170,8 @@ const BodyContentTransitioner = (props) => {
                     }}>
                         <Switch location={location}>
                             {/* {match.isExact && <Redirect to={`${match.url}/about`} />} */}
-                            <Route path={`/:route`} component={BodyContentSelector} />
+                            <Route exact path={`/:route`} component={BodyContentSelector} />
+                            {/* <Route exact path='/' render={() => <Redirect to={'/protect'} />} /> */}
                             
                         </Switch>
                     </div>

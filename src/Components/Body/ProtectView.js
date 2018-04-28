@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BodyContentWrapStyle } from './BodyContentWrapStyle';
 
-export const AboutMain = () => (
+export const ProtectView = () => (
     <BodyContentWrapStyle>
-        All about shit
+        All about protecting shit
     </BodyContentWrapStyle>
 )

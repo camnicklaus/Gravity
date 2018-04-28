@@ -14,4 +14,8 @@ export const FOOTER_HEIGHT = 4 * LENGTH_UNIT;
 // media
 export const MOBILE = 375;
 export const TABLET = 768;
-export const DESKTOP = 900;
+export const DESKTOP = 1150;
+
+//font size
+export const TINY = 8;
+export const SMALL = 12;

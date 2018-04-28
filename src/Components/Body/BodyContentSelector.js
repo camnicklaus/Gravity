@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 //components
-import { OptionsMain, AboutMain, TechnologyMain } from 'Components/Body';
+import { ProtectView, ValueDataView, ConnectView, CloudExchangeView, PrivateStorageView, SurviveView } from 'Components/Body';
 
 //styles
 import { DESKTOP } from 'styleConst';
@@ -18,19 +18,28 @@ const BodyContentSelectorStyle = styled.div`
 `;
 export const BodyContentSelector = ({match}) => {
     const { route } = match.params;
-    let CurrentComponent = AboutMain;
+    let CurrentComponent = ProtectView;
     switch (route) {
-        case 'about':
-        CurrentComponent = AboutMain;
+        case 'protect':
+        CurrentComponent = ProtectView;
         break;
-        case 'options':
-        CurrentComponent = OptionsMain;
+        case 'value-data':
+        CurrentComponent = ValueDataView;
         break;
-        case 'technology':
-        CurrentComponent = TechnologyMain;
+        case 'connect':
+        CurrentComponent = ConnectView;
+        break;
+        case 'cloud-exchange':
+        CurrentComponent = CloudExchangeView;
+        break;
+        case 'private-storage':
+        CurrentComponent = PrivateStorageView;
+        break;
+        case 'survive':
+        CurrentComponent = SurviveView;
         break;
         default:
-        CurrentComponent = AboutMain;
+        CurrentComponent = ProtectView;
     };
     return (
         <BodyContentSelectorStyle>

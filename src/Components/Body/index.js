@@ -1,7 +1,10 @@
 // import { BodyContentWrapStyle } from './BodyContentWrapStyle';
-import { AboutMain } from './AboutMain';
-import { OptionsMain } from './OptionsMain';
-import { TechnologyMain } from './TechnologyMain';
+import { ProtectView } from './ProtectView';
+import { ValueDataView } from './ValueDataView';
+import { ConnectView } from './ConnectView';
+import { CloudExchangeView } from './CloudExchangeView';
+import { PrivateStorageView } from './PrivateStorageView';
+import { SurviveView } from './SurviveView';
 import { BodyContentSelector } from './BodyContentSelector';
 
-export { AboutMain, OptionsMain, TechnologyMain, BodyContentSelector };
+export { ProtectView, ValueDataView, ConnectView, CloudExchangeView, PrivateStorageView, SurviveView, BodyContentSelector };

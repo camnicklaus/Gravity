@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BodyContentWrapStyle } from './BodyContentWrapStyle';
 
-export const TechnologyMain = () => (
+export const ConnectView = () => (
     <BodyContentWrapStyle>
-        Technology and shit
+        connecting and shit
     </BodyContentWrapStyle>
 )
