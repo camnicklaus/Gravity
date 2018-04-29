@@ -5,10 +5,10 @@ import { Transition, TransitionGroup } from 'react-transition-group';
 import Media from "react-media";
 import Img from 'react-image';
 
-import {  BodyContentSelector } from 'Components/Body';
+import {  BodyContentRouter } from 'Components/Body';
 import { MainContentLayout } from 'Components/Layout/MainContentLayout';
 import { HeaderContentLayout, HeaderContentWrap } from 'Components/Header';
-import { DESKTOP, TABLET } from 'styleConst';
+import { DESKTOP, TABLET, BLACK } from 'styleConst';
 
 const HeaderContentTop = styled.div`
   /* flex: 1; */
@@ -18,9 +18,13 @@ const HeaderContentTop = styled.div`
 `;
 const HeaderContentBottom = styled.div`
   position: relative;
+  height:40px;
   /* flex: 1; */
   display: flex;
   justify-content: center;
+  @media (max-width: ${TABLET + 'px'}) {
+    justify-content: flex-end;
+  }
 `;
 const NavDesktop = styled.ul`
   height: 100%;
@@ -31,15 +35,15 @@ const NavDesktop = styled.ul`
   display: flex;
 `;
 const NavMobileStyle = styled.ul`
-  /* height: 100%; */
-  background: white;
+  height: 300px;
+  background: ${BLACK({opacity:0.9})};
   position: absolute;
   padding: 0;
   margin: 0;
   list-style: none;
-  bottom: 0;
+  /* bottom: 0; */
   color: black;
-  /* border: 1px solid pink; */
+  border: 1px solid pink;
   /* display: flex; */
 `;
 class NavMobile extends Component {
@@ -51,30 +55,35 @@ class NavMobile extends Component {
   }
   render() {
     return (
-      <React.Fragment>
-        {this.state.menuOpen ? (
-          <NavMobileStyle onClick={() => this.setState({menuOpen: false})}>
-            {this.props.children}
-          </NavMobileStyle>
-          ) :
-        (
-          <div onClick={() => this.setState({menuOpen: true})}>hamburger</div>
-        )}
-      </React.Fragment>
-    )
+      this.state.menuOpen ? (
+        <NavMobileStyle onClick={() => this.setState({menuOpen: false})}>
+          {this.props.children}
+        </NavMobileStyle>
+      ) : (
+        <div onClick={() => this.setState({menuOpen: true})}>hamburger</div>
+      )
+    );
   }
 }
 const NavLi = styled.li`
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  &::after {
+    content: '|';
+  }
+  &:last-of-type {
+    &::after {
+      content: '';
+    }
+  }
 `;
 const NLink = styled(NavLink)`
     text-decoration: none;
     font-size: small;
     white-space: nowrap;
-    color: ${props => props.isnav ? 'black' : 'white'};
+    padding: 20px 10px;
+    color: ${props => props.isnav ? 'white' : 'white'};
     &.active {
         color: blueviolet;
     }
@@ -104,12 +113,12 @@ class App extends Component {
               {matches =>
                 matches ? (
                   <NavMobile>
-                    <NavLi><NLink isnav={matches} to='/protect'>Gravity Protect</NLink></NavLi>
-                    <NavLi><NLink isnav={matches} to='/value-data'>Gravity Value Data</NLink></NavLi>
-                    <NavLi><NLink isnav={matches} to='/connect'>Gravity Connect</NLink></NavLi>
-                    <NavLi><NLink isnav={matches} to='/cloud-exchange'>Gravity Cloud Exchange</NLink></NavLi>
-                    <NavLi><NLink isnav={matches} to='/private-storage'>Gravity Private Storage</NLink></NavLi>
-                    <NavLi><NLink isnav={matches} to='/survive'>O365 Survive</NLink></NavLi>
+                    <NavLi><NLink isnav={matches ? 1 : 0} to='/protect'>Gravity Protect</NLink></NavLi>
+                    <NavLi><NLink isnav={matches ? 1 : 0} to='/value-data'>Gravity Value Data</NLink></NavLi>
+                    <NavLi><NLink isnav={matches ? 1 : 0} to='/connect'>Gravity Connect</NLink></NavLi>
+                    <NavLi><NLink isnav={matches ? 1 : 0} to='/cloud-exchange'>Gravity Cloud Exchange</NLink></NavLi>
+                    <NavLi><NLink isnav={matches ? 1 : 0} to='/private-storage'>Gravity Private Storage</NLink></NavLi>
+                    <NavLi><NLink isnav={matches ? 1 : 0} to='/survive'>O365 Survive</NLink></NavLi>
                   </NavMobile>
                 ) : (
                   <NavDesktop>
@@ -170,7 +179,8 @@ const BodyContentTransitioner = (props) => {
                     }}>
                         <Switch location={location}>
                             {/* {match.isExact && <Redirect to={`${match.url}/about`} />} */}
-                            <Route exact path={`/:route`} component={BodyContentSelector} />
+                            <Route path={`/:route`} component={BodyContentRouter} />
+                            <Route exact path={`/`} component={BodyContentRouter} />
                             {/* <Route exact path='/' render={() => <Redirect to={'/protect'} />} /> */}
                             
                         </Switch>

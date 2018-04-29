@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import BodyContentWrapStyle from './BodyContentWrapStyle';
+import { BodyContentWrapStyle } from 'Components/Body/BodyContentWrapStyle';
 
-export const TechnologyMain = () => (
+export const SurviveView = () => (
     <BodyContentWrapStyle>
-        Technology and shit
+        surviving and shit
     </BodyContentWrapStyle>
 )

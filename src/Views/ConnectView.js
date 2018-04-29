@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BodyContentWrapStyle } from './BodyContentWrapStyle';
+import { BodyContentWrapStyle } from 'Components/Body/BodyContentWrapStyle';
 
 export const ConnectView = () => (
     <BodyContentWrapStyle>
